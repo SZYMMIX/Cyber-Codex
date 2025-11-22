@@ -28,7 +28,101 @@
     </header>
 
     <main>
- 
+        <section id="view-selection" class="view-section">
+            <div>
+                <h1>BLACK MARKET</h1>
+                <p>The city's heartbeat is a flatline of data streams and 
+                    back-alley deals. Every job is a risk, every client a ghost. 
+                    Where you plug in determines who you become. 
+                    Read the chatter, pick your poison.
+                </p>
+            </div>
+
+            <div class="paths-container yellow-bg">
+                <article class="path-card streetkid">
+                    <h2>Streetkid</h2>
+                    <div class="card-image-wrapper">
+                         <img src="assets/images/market/v-streetkid.png" alt="Streetkid V">
+                    </div>
+                    <p>You trust your chrome, your gut, and the fixer who pays on time. This is about reputation, freedom, and surviving another day 
+                        on your own terms. 
+                        The streets are calling. 
+                        You gonna answer?
+                    </p>
+                    <button class="cyber-btn black-btn path-btn" data-path="streetkid">Jack In</button>
+                </article>
+
+                <div class="vertical-divider"></div>
+
+                <article class="path-card corpo">
+                    <h2>Corpo</h2>
+                    <div class="card-image-wrapper">
+                        <img src="assets/images/market/v-corpo.png" alt="Corpo V">
+                    </div>
+                    <p>You prefer clean contracts, NDAs, and the unlimited resources...</p>
+                    <button class="cyber-btn black-btn path-btn" data-path="corpo">Access Secure Network</button>
+                </article>
+            </div>
+        </section>
+
+        <section id="view-job-board" class="view-section hidden">
+            
+            <h3>FIXER'S JOB BOARD</h3>
+            
+            <div class="slider-container">
+                <button>←</button>
+                <button class="slider-btn prev" id="prev-job">&lt;</button>
+                
+                <div class="job-card-display">
+                    <h4 id="job-title">Loading...</h4>
+                    <div class="job-details">
+                        <p id="job-desc">...</p>
+                        <p class="reward" id="job-reward">REWARD: ...</p>
+                    </div>
+                    <button class="cyber-btn outline-btn" id="signup-btn">SIGN UP</button>
+                </div>
+
+                <button class="slider-btn next" id="next-job">&gt;</button>
+            </div>
+        </section>
+
+        <section id="view-application" class="view-section hidden">
+            
+            <button class="back-arrow">←</button>
+            
+            <div class="form-wrapper">
+                <h3>SUBMITTING CREDENTIALS FOR: <span id="form-job-title" class="highlight">Unknown</span></h3>
+                
+                <form id="faction-form">
+                    <div class="form-group">
+                        <label>Netrunner ID:</label>
+                        <input type="text" placeholder="user@net.nc" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Relevant Skills (Tag your specialties):</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox"> Stealth</label>
+                            <label><input type="checkbox"> Netrunning</label>
+                            <label><input type="checkbox"> Marksmanship</label>
+                            <label><input type="checkbox"> Tech</label>
+                            <label><input type="checkbox"> Brawling</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Why You're the Right Gutter-rat for the Job (Briefly):</label>
+                        <textarea rows="4"></textarea>
+                    </div>
+
+                    <div class="form-footer">
+                        <label><input type="checkbox" required>I understand the risks. No refunds for flatlining.</label>
+                        <button type="submit" class="cyber-btn blue-btn">SUBMIT</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
     </main>
 
     <footer>
