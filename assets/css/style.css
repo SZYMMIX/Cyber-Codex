@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cp-yellow: #EBF400;
+    --cp-cyan: #33DAFF;
+    --cp-pink: #F72798;
+    --cp-black: #050a10;
+    --cp-dark-bg: #1a1a1a;
+    
+    --font-orbitron: 'Orbitron', sans-serif;   
+    --font-rajdhani: 'Rajdhani', sans-serif;    
+    --font-terminal: 'VT323', monospace;
+    
+    --clip-br: polygon(
+        0 0, 
+        100% 0, 
+        100% calc(100% - 20px), 
+        calc(100% - 20px) 100%, 
+        0 100%
+    );
+
+    --clip-tl: polygon(
+        20px 0, 
+        100% 0, 
+        100% 100%, 
+        0 100%, 
+        0 20px
+    );
+
+    --clip-both: polygon(
+        20px 0, 
+        100% 0, 
+        100% calc(100% - 20px), 
+        calc(100% - 20px) 100%, 
+        0 100%, 
+        0 20px
+    );
+
+    --clip-small: polygon(
+        0 0, 
+        100% 0, 
+        100% calc(100% - 10px), 
+        calc(100% - 10px) 100%, 
+        0 100%
+    );
+}
+
+
+
+body {
+    background-color: var(--cp-black);
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.shape-br { 
+    clip-path: var(--clip-br); 
+}
+
+.shape-tl { 
+    clip-path: var(--clip-tl); 
+}  
+
+.shape-both { 
+    clip-path: var(--clip-both); 
+} 
+
+.shape-small { 
+    clip-path: var(--clip-small); 
+}
+
+a { 
+    text-decoration: none; 
+    color: inherit; 
+}
+
+ul { 
+    list-style: none; 
+}
