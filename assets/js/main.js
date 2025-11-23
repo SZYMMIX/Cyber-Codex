@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         counterElement.innerText = formatCount(currentVal);
 
         const updateCounter = () => {
-            const increment = Math.floor(Math.random() * 8) + 1;
+            const increment = Math.floor(Math.random() * 4) + 1;
             
             currentVal += increment;
 
@@ -36,4 +36,34 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(updateCounter, 4000);
     }
 
+    const moonContainer = document.querySelector('.moon-scroll-container');
+    
+    const textTogether = document.querySelector('.scene-together .moon-text');
+    const imgTogether = document.querySelector('.scene-together .moon-visual');
+    
+    const textAlone = document.querySelector('.scene-alone .moon-text');
+    const imgAlone = document.querySelector('.scene-alone .moon-visual');
+
+    if (moonContainer && textTogether && imgTogether && textAlone && imgAlone) {
+        window.addEventListener('scroll', () => {
+            const containerTop = moonContainer.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            const scrollDistance = moonContainer.offsetHeight - windowHeight;
+
+            let progress = (containerTop * -1) / scrollDistance;
+
+            if (progress < 0) progress = 0;
+            if (progress > 1) progress = 1;
+
+            imgTogether.style.opacity = 1 - progress;
+            imgAlone.style.opacity = progress;
+
+            let textOp1 = 1 - (progress * 2.2);
+            
+            let textOp2 = (progress - 0.55) * 2.2;
+
+            textTogether.style.opacity = Math.max(0, Math.min(1, textOp1));
+            textAlone.style.opacity    = Math.max(0, Math.min(1, textOp2));
+        });
+    }
 });
