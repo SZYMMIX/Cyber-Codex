@@ -26,7 +26,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -34,26 +34,24 @@
 </head>
 <body>
 
-    <header>
-        <div>
-            <a href="index.html"><img src="assets/images/logo-samurai.png" alt="Logo"/></a>
+    <header class="cyber-header">
+        <div class="header-left">
+            <div class="header-logo"><a href="index.html"><img src="assets/images/logo-samurai.png" alt="Logo"></a></div>
+            <nav class="cyber-nav">
+                <ul>
+                    <li><a href="market.html">Market</a></li>
+                    <li><a href="archive.html">Archive</a></li>
+                    <li><a href="chronicle.html">Chronicle</a></li>
+                </ul>
+            </nav>
         </div>
-
-        <nav>
-            <ul>
-                <li><a href="market.html">Market</a></li>
-                <li><a href="archive.html">Archive</a></li>
-                <li><a href="chronicle.html">Chronicle</a></li>
-            </ul>
-        </nav>
-
         <div class="death-counter"><span class="count">0030</span><span class="label">Today's<br>Deaths</span></div>
     </header>
 
     <main>
-        <section>
-            <div>
-                <p>Welcome to the</p>
+        <section class="hero-section yellow-bg">
+            <div class="hero-content">
+                <p class="sub-heading">Welcome to the</p>
                 <h1>City of Dreams</h1>
             </div>
             <div>
@@ -99,46 +97,46 @@
         
         <div class="moon-scroll-container">
             <div class="sticky-wrapper">
-                <div>
-                    <p>In a city where you can promise someone the moon...</p>
-                    <div>
+                <div class="moon-scene scene-together">
+                    <p class="moon-text">In a city where you can promise someone the moon...</p>
+                    <div class="moon-visual">
                         <img src="assets/images/home/moon-together.jpg" alt="David and Lucy on the Moon">
                     </div>
                 </div>
 
-                <div>
-                    <p>...and be the one left watching it alone.</p>
-                    <div>
+                <div class="moon-scene scene-alone" id="scene-alone">
+                    <p class="moon-text">...and be the one left watching it alone.</p>
+                    <div class="moon-visual">
                         <img src="assets/images/home/moon-alone.jpg" alt="Lucy alone on the Moon">
                     </div>
                 </div>
             </div>
         </div>
 
-        <section>
+        <section class="outro-section yellow-bg">
             <div>
-                <h2>Because in Night City, you are not remembered for how you lived, but for what you were willing to die for.</h2>
-                <div>
-                    <p><span class="comment">// SESSION LOG_TRANSMISSION_COMPLETE</span></p>
-                    <p><span class="comment">// NARRATIVE_STREAM_ENDED</span></p>
-                    <p><span class="comment">// STATUS: Awaiting user input...</span></p>
+                <h2 style="font-family: var(--font-orbitron); font-size: 2rem; color: #000000;">Because in Night City, you are not remembered for how you lived, but for what you were willing to die for.</h2>
+                <div class="terminal-box">
+                    <p><span class="code-line">// SESSION LOG_TRANSMISSION_COMPLETE</span></p>
+                    <p><span class="code-line">// NARRATIVE_STREAM_ENDED</span></p>
+                    <p><span class="code-line">// STATUS: Awaiting user input...</span></p>
                     <br>
-                    <p >> YOUR PATH AWAITS_</p>
+                    <p class="code-line prompt">> YOUR PATH AWAITS_</p>
                 </div>
 
-                <div>
-                    <a href="market.html">MARKET</a>
-                    <a href="archive.html">ARCHIVE</a>
-                    <a href="chronicle.html">CHRONICLE</a>
+                <div class="outro-nav" style="display: flex; gap: 20px;">
+                    <a href="market.html" class="cyber-btn black-btn">MARKET</a>
+                    <a href="archive.html" class="cyber-btn black-btn">ARCHIVE</a>
+                    <a href="chronicle.html" class="cyber-btn black-btn">CHRONICLE</a>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <footer>
+    <footer class="cyber-footer">
         <p>&copy; 2025 Szymon Cimochowski</p>
-        <a href="https://github.com/SZYMMIX"><img src="assets/images/github-icon.png" alt="GitHub"></a>
+        <a href="https://github.com/SZYMMIX"><img src="assets/images/github-icon.png" style="height: 30px;" alt="GitHub"></a>
     </footer>
 
 </body>
