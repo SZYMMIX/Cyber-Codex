@@ -1,5 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    const preloadImages = (imageUrls) => {
+        imageUrls.forEach(url => {
+            const img = new Image();
+            img.src = url;
+        });
+    };
+
+    const chronicleBackgrounds = [
+        'assets/images/chronicle/chronicle-foundation-background.png',
+        'assets/images/chronicle/chronicle-wars-background.png',
+        'assets/images/chronicle/chronicle-redsky-background.png',
+        'assets/images/chronicle/chronicle-modern-background.png'
+    ];
+
+    const gangImages = [
+        'assets/images/archive/gangs/gang-6th-street.png',
+        'assets/images/archive/gangs/gang-maelstrom.png',
+        'assets/images/archive/gangs/gang-tyger-claws.png',
+        'assets/images/archive/gangs/gang-valentinos.png',
+        'assets/images/archive/gangs/gang-voodoo-boys.png'
+    ];
+
+    const districtImages = [
+        'assets/images/archive/districts/watson-main.png',
+        'assets/images/archive/districts/westbrook-main.png',
+        'assets/images/archive/districts/city-center-main.png',
+        'assets/images/archive/districts/pacifica-main.png'
+    ];
+
+    preloadImages([...chronicleBackgrounds, ...gangImages, ...districtImages]);
+
+
     const counterElement = document.querySelector('.death-counter .count');
 
     if (counterElement) {

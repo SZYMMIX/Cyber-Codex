@@ -1440,7 +1440,7 @@ body.theme-modern {
 
     html { font-size: 16px; }
     
-    h1, .hero-content h1, .market-intro h1, .archive-title {
+    h1, .hero-content h1, .market-intro h1{
         font-size: 3rem !important; 
     }
     
@@ -1464,6 +1464,7 @@ body.theme-modern {
         width: 100%;
         justify-content: center;
         height: 50px;
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 25px), calc(100% - 25px) 100%, 0 100%);;
     }
 
     .cyber-nav ul li a {
@@ -1491,6 +1492,10 @@ body.theme-modern {
         align-items: center; 
     }
 
+    .hero-glow{
+        top: 70%;
+        left: 50%
+    }
     .hero-section img {
         margin-top: 2rem;
         max-height: 400px; 
@@ -1518,6 +1523,39 @@ body.theme-modern {
 
     .legend-image-wrapper { order: -1; }
     
+    .terminal-box {
+        padding: 1.5rem !important;
+        width: 95%; 
+        margin: 0 auto;
+    }
+
+    .code-line {
+        font-size: 1.2rem !important;
+        line-height: 1.4;
+        word-wrap: break-word; 
+    }
+
+    .code-line.prompt {
+        font-size: 1.2rem !important; 
+        margin-top: 15px;
+    }
+
+    .outro-nav {
+        width: 100%;
+        flex-direction: column; 
+        align-items: center;
+        gap: 15px; 
+    }
+
+    .outro-nav .cyber-btn {
+        width: 100%;
+        max-width: 300px; 
+        
+        padding: 12px 0 !important; 
+        font-size: 1rem !important; 
+        letter-spacing: 1px; 
+    }
+
     .paths-container {
         flex-direction: column;
         align-items: center;
@@ -1547,12 +1585,15 @@ body.theme-modern {
     }
 
     .back-tab {
-        left: 50%;
-        transform: translateX(-50%);
-        top: -40px;
-        clip-path: none;
-        border-radius: 5px 5px 0 0;
-        width: 100px;
+        transform: none !important; 
+        
+        left: 0 !important; 
+        
+        top: -40px !important;
+        
+        border-radius: 5px 5px 0 0 !important;
+        clip-path: none !important; 
+        width: 60px !important; 
     }
 
     .gang-display-layout, .district-slider-controls {
@@ -1615,6 +1656,10 @@ body.theme-modern {
     .moon-visual img {
         max-height: 50vh; 
     }
+
+    .risk-label{
+        font-size: 1.3rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1626,5 +1671,45 @@ body.theme-modern {
     
     .hero-title { font-size: 2.5rem !important; }
     
-    .path-card h2, .board-title { font-size: 2rem !important; }
+    .path-card h2 { font-size: 2rem !important; }
+    
+    .view-section h3{
+        font-size: 1.7em;
+    }
+}
+
+@media (max-width: 768px) {
+    
+    .form-footer-row {
+        flex-direction: column !important;
+        align-items: stretch !important; 
+        gap: 25px !important; 
+    }
+
+    .risk-label {
+        align-items: flex-start !important; 
+        text-align: left;
+        width: 100%;
+    }
+
+    .risk-label input[type="checkbox"] {
+        margin-top: 5px !important; 
+        margin-right: 15px; 
+        flex-shrink: 0; 
+    }
+
+    .glow-btn {
+        width: 100%;
+        text-align: center;
+        padding: 15px 0; 
+    }
+
+    .cyber-footer p{
+        font-size: 1.2rem;
+
+    }
+
+    .archive-title{
+        font-size: 2.3rem !important;
+    }
 }
