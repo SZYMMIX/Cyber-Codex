@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const STARTING_DEATHS = 30;
         const formatCount = (num) => num.toString().padStart(4, '0');
 
-        let savedCount = localStorage.getItem(STORAGE_KEY);
+        let savedCount = sessionStorage.getItem(STORAGE_KEY);
         let currentVal;
 
         if (savedCount) {
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             counterElement.innerText = formatCount(currentVal);
 
-            localStorage.setItem(STORAGE_KEY, currentVal);
+            sessionStorage.setItem(STORAGE_KEY, currentVal);
 
             const nextUpdateIn = Math.floor(Math.random() * 4000) + 3000;
             setTimeout(updateCounter, nextUpdateIn);
@@ -104,6 +104,44 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
+    const gangsData = [
+    {
+        name: "6th Street",
+        image: "./assets/images/archive/gangs/gang-6th-street.png", 
+        territory: "Santo Domingo, Arroyo",
+        threat: "High",
+        desc: "Self-proclaimed patriots, heavily armed bullies in practice. They run Santo Domingo with an iron fist and a loaded rifle. Founded by veterans to protect the neighborhood, now just another gang extortion racket."
+    },
+    {
+        name: "Maelstrom",
+        image: "./assets/images/archive/gangs/gang-maelstrom.png",
+        territory: "Watson, Northside",
+        threat: "Extreme",
+        desc: "Cyber-psychos obsessed with body modification. They reject humanity in favor of chrome. Unpredictable, violent, and heavily augmented. Engaging them without heavy firepower is suicide."
+    },
+    {
+        name: "Tyger Claws",
+        image: "./assets/images/archive/gangs/gang-tyger-claws.png",
+        territory: "Westbrook, Japantown",
+        threat: "Medium-High",
+        desc: "Ruthless protectors of the Japanese community backed by Arasaka. They favor katanas, motorcycles, and glowing tattoos. They control the pleasure districts and gambling dens."
+    },
+    {
+        name: "Valentinos",
+        image: "./assets/images/archive/gangs/gang-valentinos.png",
+        territory: "Heywood",
+        threat: "Medium",
+        desc: "One of Night City's largest gangs. Bound by a strict moral code and centuries-old traditions. They are devoted to Santa Muerte and seducing the most beautiful women in the city."
+    },
+    {
+        name: "Voodoo Boys",
+        image: "./assets/images/archive/gangs/gang-voodoo-boys.png",
+        territory: "Pacifica",
+        threat: "Unknown",
+        desc: "Expert netrunners devoted to uncovering the secrets of the Old Net and the Blackwall. They operate in the shadows of Pacifica and view the physical world as secondary to the digital one."
+    }
+];
+
     let currentPath = ''; 
     let currentJobIndex = 0;
 
@@ -114,141 +152,226 @@ document.addEventListener('DOMContentLoaded', () => {
     const jobTitle = document.getElementById('job-title');
     const jobDesc = document.getElementById('job-desc');
     const jobReward = document.getElementById('job-reward');
+    if (viewSelection) {
+        function switchView(viewToShow) {
+            viewSelection.classList.add('hidden');
+            viewJobBoard.classList.add('hidden');
+            viewApplication.classList.add('hidden');
 
-    function switchView(viewToShow) {
-        viewSelection.classList.add('hidden');
-        viewJobBoard.classList.add('hidden');
-        viewApplication.classList.add('hidden');
+            viewToShow.classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
 
-        viewToShow.classList.remove('hidden');
-        window.scrollTo(0, 0);
-    }
+        function loadJobData() {
+            const jobList = jobsDatabase[currentPath];
+            const job = jobList[currentJobIndex];
 
-    function loadJobData() {
-        const jobList = jobsDatabase[currentPath];
-        const job = jobList[currentJobIndex];
+            jobTitle.textContent = job.title;
+            jobDesc.textContent = job.desc;
+            jobReward.textContent = "REWARD: " + job.reward;
+        }
 
-        jobTitle.textContent = job.title;
-        jobDesc.textContent = job.desc;
-        jobReward.textContent = "REWARD: " + job.reward;
-    }
-
-    const pathButtons = document.querySelectorAll('.path-btn');
-    pathButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            currentPath = e.target.getAttribute('data-path');
-            const boardHeader = viewJobBoard.querySelector('.board-title');
-    
-            if (currentPath === 'corpo') {
-                boardHeader.textContent = "CORPORATE DIRECTIVES";
-                boardHeader.style.color = "#ff0000"; 
-            } else {
-                boardHeader.textContent = "FIXER'S JOB BOARD";
-                boardHeader.style.color = "#fff"; 
-    }
-            currentJobIndex = 0;
-            
-            loadJobData();
-            switchView(viewJobBoard); 
-        });
-    });
-
-    const nextBtn = document.getElementById('next-job');
-    const prevBtn = document.getElementById('prev-job');
-
-    if(nextBtn && prevBtn) {
-        nextBtn.addEventListener('click', () => {
-            const max = jobsDatabase[currentPath].length - 1;
-            currentJobIndex++;
-            if (currentJobIndex > max) currentJobIndex = 0;
-            loadJobData();
-        });
-
-        prevBtn.addEventListener('click', () => {
-            const max = jobsDatabase[currentPath].length - 1;
-            currentJobIndex--;
-            if (currentJobIndex < 0) currentJobIndex = max;
-            loadJobData();
-        });
-    }
-
-    const signupBtn = document.getElementById('signup-btn');
-    if(signupBtn) {
-        signupBtn.addEventListener('click', () => {
-            const currentTitle = jobsDatabase[currentPath][currentJobIndex].title;
-            document.getElementById('form-job-title').textContent = currentTitle;
-            
-            switchView(viewApplication);
-        });
-    }
-
-    const backFromBoard = viewJobBoard.querySelector('.back-tab');
-    
-    if(backFromBoard) {
-        backFromBoard.addEventListener('click', () => {
-            switchView(viewSelection);
-        });
-    }
-
-    const backFromForm = viewApplication.querySelector('.back-arrow');
-    if(backFromForm) {
-        backFromForm.addEventListener('click', () => {
-            switchView(viewJobBoard);
-        });
-    }
-
-    const form = document.getElementById('faction-form');
-    const idInput = document.getElementById('netrunner-id');
-    const errorMsg = document.getElementById('id-error');
-
-    if(form) {
-        idInput.addEventListener('input', () => {
-            idInput.classList.remove('input-error');
-            errorMsg.style.display = 'none';
-        });
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const emailValue = idInput.value.trim(); 
-            let specificError = ""; 
-            
-            if (emailValue === "") {
-                specificError = "NULL_INPUT: ID required.";
-            
-            } else if (!emailValue.includes('@')) {
-                specificError = "SYNTAX_ERROR: Missing '@' separator.";
-            
-            } else {
-                const parts = emailValue.split('@');
-                const user = parts[0];
-                const domain = parts[1];
-
-                if (user.length === 0) {
-                    specificError = "INVALID_USER: Username missing.";
+        const pathButtons = document.querySelectorAll('.path-btn');
+        pathButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                currentPath = e.target.getAttribute('data-path');
+                const boardHeader = viewJobBoard.querySelector('.board-title');
+        
+                if (currentPath === 'corpo') {
+                    boardHeader.textContent = "CORPORATE DIRECTIVES";
+                    boardHeader.style.color = "#ff0000"; 
+                } else {
+                    boardHeader.textContent = "FIXER'S JOB BOARD";
+                    boardHeader.style.color = "#fff"; 
+        }
+                currentJobIndex = 0;
                 
-                } else if (!domain.includes('.')) {
-                    specificError = "NETWORK_ERROR: Invalid host/domain.";
+                loadJobData();
+                switchView(viewJobBoard); 
+            });
+        });
+
+        const nextBtn = document.getElementById('next-job');
+        const prevBtn = document.getElementById('prev-job');
+
+        if(nextBtn && prevBtn) {
+            nextBtn.addEventListener('click', () => {
+                const max = jobsDatabase[currentPath].length - 1;
+                currentJobIndex++;
+                if (currentJobIndex > max) currentJobIndex = 0;
+                loadJobData();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                const max = jobsDatabase[currentPath].length - 1;
+                currentJobIndex--;
+                if (currentJobIndex < 0) currentJobIndex = max;
+                loadJobData();
+            });
+        }
+
+        const signupBtn = document.getElementById('signup-btn');
+        if(signupBtn) {
+            signupBtn.addEventListener('click', () => {
+                const currentTitle = jobsDatabase[currentPath][currentJobIndex].title;
+                document.getElementById('form-job-title').textContent = currentTitle;
                 
-                } else if (domain.split('.')[1].length < 2) {
-                    specificError = "PROTOCOL_ERR: Domain extension too short.";
-                }
-            }
-            
-            if (specificError !== "") {
-                idInput.classList.add('input-error');
-                errorMsg.textContent = specificError; 
-                errorMsg.style.display = 'block';
-                 
-            } else {
-                alert("CREDENTIALS VERIFIED. DATA UPLOADED TO THE NET.");
-                form.reset();
-                
+                switchView(viewApplication);
+            });
+        }
+
+        const backFromBoard = viewJobBoard.querySelector('.back-tab');
+        
+        if(backFromBoard) {
+            backFromBoard.addEventListener('click', () => {
+                switchView(viewSelection);
+            });
+        }
+
+        const backFromForm = viewApplication.querySelector('.back-arrow');
+        if(backFromForm) {
+            backFromForm.addEventListener('click', () => {
+                switchView(viewJobBoard);
+            });
+        }
+
+        const form = document.getElementById('faction-form');
+        const idInput = document.getElementById('netrunner-id');
+        const errorMsg = document.getElementById('id-error');
+
+        if(form) {
+            idInput.addEventListener('input', () => {
                 idInput.classList.remove('input-error');
                 errorMsg.style.display = 'none';
+            });
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const emailValue = idInput.value.trim(); 
+                let specificError = ""; 
                 
-                switchView(viewSelection);
+                if (emailValue === "") {
+                    specificError = "NULL_INPUT: ID required.";
+                
+                } else if (!emailValue.includes('@')) {
+                    specificError = "SYNTAX_ERROR: Missing '@' separator.";
+                
+                } else {
+                    const parts = emailValue.split('@');
+                    const user = parts[0];
+                    const domain = parts[1];
+
+                    if (user.length === 0) {
+                        specificError = "INVALID_USER: Username missing.";
+                    
+                    } else if (!domain.includes('.')) {
+                        specificError = "NETWORK_ERROR: Invalid host/domain.";
+                    
+                    } else if (domain.split('.')[1].length < 2) {
+                        specificError = "PROTOCOL_ERR: Domain extension too short.";
+                    }
+                }
+                
+                if (specificError !== "") {
+                    idInput.classList.add('input-error');
+                    errorMsg.textContent = specificError; 
+                    errorMsg.style.display = 'block';
+                    
+                } else {
+                    alert("CREDENTIALS VERIFIED. DATA UPLOADED TO THE NET.");
+                    form.reset();
+                    
+                    idInput.classList.remove('input-error');
+                    errorMsg.style.display = 'none';
+                    
+                    switchView(viewSelection);
+                }
+            });
+        }
+    }
+    const carouselContainer = document.querySelector('.gang-carousel');
+    if (carouselContainer) {
+        const prevGangBtn = document.getElementById('prev-gang');
+        const nextGangBtn = document.getElementById('next-gang');
+        
+        const headerName = document.getElementById('gang-name-header');
+        const cardTitle = document.getElementById('gang-card-title');
+        const territorySpan = document.getElementById('gang-territory');
+        const threatSpan = document.getElementById('gang-threat');
+        const descP = document.getElementById('gang-desc');
+
+        let currentGangIndex = 0;
+
+        function initGangCarousel() {
+            if (!carouselContainer) return;
+
+            carouselContainer.innerHTML = ''; 
+
+            gangsData.forEach((gang, index) => {
+                const slide = document.createElement('div');
+                slide.classList.add('gang-slide');
+                
+                const img = document.createElement('img');
+                img.src = gang.image;
+                img.alt = gang.name;
+
+                slide.appendChild(img);
+                carouselContainer.appendChild(slide);
+            });
+
+            updateGangView(); 
+        }
+
+        function updateGangView() {
+            if (!carouselContainer) return;
+
+            const slides = document.querySelectorAll('.gang-slide');
+            const total = slides.length;
+            const prevIndex = (currentGangIndex - 1 + total) % total;
+            const nextIndex = (currentGangIndex + 1) % total;
+
+            slides.forEach((slide, index) => {
+                slide.className = 'gang-slide'; 
+
+                if (index === currentGangIndex) {
+                    slide.classList.add('active');
+                } else if (index === prevIndex) {
+                    slide.classList.add('prev');
+                } else if (index === nextIndex) {
+                    slide.classList.add('next');
+                } else {
+                    slide.classList.add('hidden');
+                }
+            });
+
+            const currentGang = gangsData[currentGangIndex];
+
+            const infoCard = document.querySelector('.gang-info-card');
+            
+            if(infoCard) {
+                if(headerName) headerName.textContent = currentGang.name;
+                if(cardTitle) cardTitle.textContent = currentGang.name.toUpperCase();
+                if(territorySpan) territorySpan.textContent = currentGang.territory;
+                if(threatSpan) threatSpan.textContent = currentGang.threat;
+                if(descP) descP.textContent = currentGang.desc;
             }
-        });
+        }
+
+        if (prevGangBtn && nextGangBtn) {
+            initGangCarousel(); 
+
+            prevGangBtn.addEventListener('click', () => {
+                currentGangIndex--;
+                if (currentGangIndex < 0) currentGangIndex = gangsData.length - 1;
+                updateGangView();
+            });
+
+            nextGangBtn.addEventListener('click', () => {
+                currentGangIndex++;
+                if (currentGangIndex >= gangsData.length) currentGangIndex = 0;
+                updateGangView();
+            });
+        }
     }
 });

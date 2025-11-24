@@ -1011,3 +1011,148 @@ input[type="checkbox"]:checked {
     75% { transform: translateX(-5px); }
     100% { transform: translateX(0); }
 }
+
+.gangs-section {
+    background-color: var(--cp-yellow);
+    min-height: 100vh;
+    padding: 4rem 20px;
+    overflow: hidden;
+}
+
+.archive-title {
+    font-family: var(--font-orbitron);
+    font-size: 3.7rem;
+    text-align: center;
+    margin-bottom: 4rem;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.gang-display-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px; 
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.carousel-wrapper {
+    width: 50%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#gang-name-header {
+    font-family: var(--font-rajdhani);
+    font-size: 2.5rem;
+    color: #000;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.gang-carousel {
+    width: 320px; 
+    height: 480px; 
+    position: relative;
+    perspective: 1000px; 
+}
+
+.gang-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease-in-out; 
+}
+
+.gang-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.gang-slide.active {
+    z-index: 10;
+    transform: translateX(0) scale(1);
+    opacity: 1;
+}
+.gang-slide.active img {
+    border: 4px solid var(--cp-pink); 
+}
+
+.gang-slide.prev {
+    z-index: 5;
+    transform: translateX(-120%) scale(0.85); 
+    opacity: 0.4;
+    filter: grayscale(100%); 
+}
+
+.gang-slide.next {
+    z-index: 5;
+    transform: translateX(120%) scale(0.85); 
+    opacity: 0.4;
+    filter: grayscale(100%);
+}
+
+.gang-slide.hidden {
+    opacity: 0;
+    transform: scale(0);
+    z-index: 0;
+}
+
+
+.gang-info-card {
+    width: 40%; 
+    background-color: #1a1a00; 
+    color: #fff;
+    padding: 3rem;
+    position: relative;
+    
+    clip-path: polygon(50px 0, 100% 0, 100% 100%, 0 100%, 0 50px);
+    
+    border-top: 4px solid rgba(255,255,255,0.1);
+}
+
+.gang-info-card h2 {
+    font-family: var(--font-orbitron);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #555;
+    padding-bottom: 10px;
+    color: #fff;
+}
+
+.info-row {
+    font-family: var(--font-rajdhani);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.info-row strong {
+    color: #fff;
+}
+
+.info-row span {
+    color: #ccc; 
+}
+
+#gang-desc {
+    margin-top: 30px;
+    font-family: var(--font-rajdhani);
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #bbb;
+}
