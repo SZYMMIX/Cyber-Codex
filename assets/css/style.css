@@ -443,3 +443,122 @@ a{
 .moon-text, .moon-visual {
     transition: opacity 0.1s linear;
 }
+
+.outro-section {
+    background-color: var(--cp-yellow);
+    padding: 8rem 0 6rem 0; 
+    position: relative;
+}
+
+.outro-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px; 
+}
+
+.outro-text h2 {
+    font-family: var(--font-orbitron);
+    color: #000;
+    font-size: 3rem;
+    font-weight: 500;
+    text-align: center;
+    max-width: 1000px;
+}
+
+.terminal-box {
+    background-color: hsla(0, 0%, 6%, 0.9); 
+    width: 100%;
+    max-width: 800px;
+    padding: 40px;
+    text-align: left; 
+    
+    border: 1px solid #333;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-radius: 4px; 
+    
+    font-family: var(--font-vt323), monospace;
+    font-size: 2.4rem;
+    color: var(--cp-cyan); 
+    letter-spacing: 1px;
+}
+
+.code-line {
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+
+.comment {
+    color: var(--cp-cyan); 
+    opacity: 0.8;
+}
+
+.prompt::after {
+    content: '_';
+    animation: blink 1s infinite;
+    color: var(--cp-cyan); 
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.outro-nav {
+    display: flex;
+    justify-content: center; 
+    gap: 80px; 
+    margin-top: 40px; 
+    flex-wrap: wrap; 
+}
+
+.cyber-btn {
+    background-color: hsla(213, 52%, 4%, 0.9); 
+    color: var(--cp-cyan); 
+    
+    font-family: var(--font-rajdhani); 
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-align: center;
+    
+    padding: 15px 40px; 
+    border-radius: 5px; 
+    border: 2px solid transparent; 
+    
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; 
+    text-shadow: 0 0px 10px var(--cp-cyan);
+    box-shadow: 0 0px 15px rgba(0,0,0,0.9);
+}
+
+.cyber-btn:hover {
+    background-color: var(--cp-cyan); 
+    color: #000; 
+    box-shadow: 0 0 20px var(--cp-cyan);
+}
+
+.cyber-btn:active {
+    box-shadow: 0 0 5px var(--cp-cyan);
+}
+
+.cyber-footer{
+    display: flex;
+    background-color: #000;
+    height: 20vh;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.cyber-footer p{
+    color: hsla(0, 0%, 100%, 0.8);
+    font-family: var(--font-orbitron);
+    font-size: 1.6rem;
+}
