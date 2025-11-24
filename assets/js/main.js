@@ -137,6 +137,15 @@ document.addEventListener('DOMContentLoaded', () => {
     pathButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
             currentPath = e.target.getAttribute('data-path');
+            const boardHeader = viewJobBoard.querySelector('.board-title');
+    
+            if (currentPath === 'corpo') {
+                boardHeader.textContent = "CORPORATE DIRECTIVES";
+                boardHeader.style.color = "#ff0000"; 
+            } else {
+                boardHeader.textContent = "FIXER'S JOB BOARD";
+                boardHeader.style.color = "#fff"; 
+    }
             currentJobIndex = 0;
             
             loadJobData();
@@ -189,12 +198,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const form = document.getElementById('faction-form');
+    const idInput = document.getElementById('netrunner-id');
+    const errorMsg = document.getElementById('id-error');
+
     if(form) {
+        idInput.addEventListener('input', () => {
+            idInput.classList.remove('input-error');
+            errorMsg.style.display = 'none';
+        });
+
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            alert("DATA UPLOADED TO THE NET. FIXER WILL CONTACT YOU.");
-            form.reset();
-            switchView(viewSelection);
+
+            const emailValue = idInput.value.trim(); 
+            let specificError = ""; 
+            
+            if (emailValue === "") {
+                specificError = "NULL_INPUT: ID required.";
+            
+            } else if (!emailValue.includes('@')) {
+                specificError = "SYNTAX_ERROR: Missing '@' separator.";
+            
+            } else {
+                const parts = emailValue.split('@');
+                const user = parts[0];
+                const domain = parts[1];
+
+                if (user.length === 0) {
+                    specificError = "INVALID_USER: Username missing.";
+                
+                } else if (!domain.includes('.')) {
+                    specificError = "NETWORK_ERROR: Invalid host/domain.";
+                
+                } else if (domain.split('.')[1].length < 2) {
+                    specificError = "PROTOCOL_ERR: Domain extension too short.";
+                }
+            }
+            
+            if (specificError !== "") {
+                idInput.classList.add('input-error');
+                errorMsg.textContent = specificError; 
+                errorMsg.style.display = 'block';
+                 
+            } else {
+                alert("CREDENTIALS VERIFIED. DATA UPLOADED TO THE NET.");
+                form.reset();
+                
+                idInput.classList.remove('input-error');
+                errorMsg.style.display = 'none';
+                
+                switchView(viewSelection);
+            }
         });
     }
 });

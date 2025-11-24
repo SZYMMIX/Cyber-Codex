@@ -102,40 +102,54 @@ Ready to invest?</p>
             </div>
         </section>
 
-        <section id="view-application" class="view-section hidden">
-            
-            <button class="back-arrow">←</button>
-            
-            <div class="form-wrapper">
-                <h3>SUBMITTING CREDENTIALS FOR: <span id="form-job-title" class="highlight">Unknown</span></h3>
+        <section id="view-application" class="view-section hidden dark-bg">
+            <div class="form-card-container">
                 
-                <form id="faction-form">
-                    <div class="form-group">
-                        <label>Netrunner ID:</label>
-                        <input type="text" placeholder="user@net.nc" required>
-                    </div>
+                <button type="button" class="back-tab back-arrow" title="Back">
+                    ←
+                </button>
 
-                    <div class="form-group">
-                        <label>Relevant Skills (Tag your specialties):</label>
-                        <div class="checkbox-group">
-                            <label><input type="checkbox"> Stealth</label>
-                            <label><input type="checkbox"> Netrunning</label>
-                            <label><input type="checkbox"> Marksmanship</label>
-                            <label><input type="checkbox"> Tech</label>
-                            <label><input type="checkbox"> Brawling</label>
+                <div class="form-content">
+                    <h3 class="form-header">
+                        SUBMITTING CREDENTIALS FOR: <span id="form-job-title" class="highlight">Unknown Job</span>
+                    </h3>
+                    
+                    <div class="form-divider"></div>
+
+                    <form id="faction-form">
+                        
+                        <div class="form-group inline-group">
+                            <label for="netrunner-id">Netrunner ID:</label>
+                            <input type="text" id="netrunner-id" placeholder="user@net.nc" required>
+                            <div id="id-error" class="error-message">INVALID_PROTOCOL: Incorrect format.</div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label>Why You're the Right Gutter-rat for the Job (Briefly):</label>
-                        <textarea rows="4"></textarea>
-                    </div>
+                        <div class="form-group">
+                            <label>Relevant Skills (Tag your specialties):</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="skills" value="stealth"> Stealth</label>
+                                <label><input type="checkbox" name="skills" value="netrunning"> Netrunning</label>
+                                <label><input type="checkbox" name="skills" value="marksmanship"> Marksmanship</label>
+                                <label><input type="checkbox" name="skills" value="tech"> Tech</label>
+                                <label><input type="checkbox" name="skills" value="brawling"> Brawling</label>
+                            </div>
+                        </div>
 
-                    <div class="form-footer">
-                        <label><input type="checkbox" required>I understand the risks. No refunds for flatlining.</label>
-                        <button type="submit" class="cyber-btn blue-btn">SUBMIT</button>
-                    </div>
-                </form>
+                        <div class="form-group">
+                            <label for="reason">Why You're the Right Gutter-rat for the Job (Briefly):</label>
+                            <textarea id="reason" rows="4" required></textarea>
+                        </div>
+
+                        <div class="form-footer-row">
+                            <label class="risk-label">
+                                <input type="checkbox" required> 
+                                I understand the risks. No refunds for flatlining.
+                            </label>
+                            
+                            <button type="submit" class="cyber-btn outline-btn glow-btn">SUBMIT</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </section>
 
