@@ -140,7 +140,54 @@ document.addEventListener('DOMContentLoaded', () => {
         threat: "Unknown",
         desc: "Expert netrunners devoted to uncovering the secrets of the Old Net and the Blackwall. They operate in the shadows of Pacifica and view the physical world as secondary to the digital one."
     }
-];
+    ];
+
+    const districtsData = [
+        {
+            name: "Watson",
+            mainImage: "assets/images/archive/districts/watson-main.png",
+            desc: "A district of broken dreams and second chances. Once a corporate paradise, now a melting pot of cultures, black markets, and gangs reclaiming the fallen giant.",
+            gallery: [
+                "assets/images/archive/districts/watson-grid-1.png",
+                "assets/images/archive/districts/watson-grid-2.png",
+                "assets/images/archive/districts/watson-grid-3.png",
+                "assets/images/archive/districts/watson-grid-4.png"
+            ]
+        },
+        {
+            name: "Westbrook",
+            mainImage: "assets/images/archive/districts/westbrook-main.png",
+            desc: "The playground for the wealthy. Japantown offers endless entertainment by night, while North Oak houses the elite in their secure mansions.",
+            gallery: [
+                "assets/images/archive/districts/westbrook-grid-1.png",
+                "assets/images/archive/districts/westbrook-grid-2.png",
+                "assets/images/archive/districts/westbrook-grid-3.png",
+                "assets/images/archive/districts/westbrook-grid-4.png"
+            ]
+        },
+        {
+            name: "City Center",
+            mainImage: "assets/images/archive/districts/cc-main.png",
+            desc: "The corporate heart of Night City. Sleek skyscrapers, neon billboards, and the heavy presence of NCPD. This is where the rich play and the powerful rule.",
+            gallery: [
+                "assets/images/archive/districts/cc-grid-1.png",
+                "assets/images/archive/districts/cc-grid-2.png",
+                "assets/images/archive/districts/cc-grid-3.png",
+                "assets/images/archive/districts/cc-grid-4.png"
+            ]
+        },
+        {
+            name: "Pacifica",
+            mainImage: "assets/images/archive/districts/pacifica-main.png",
+            desc: "A failed resort district abandoned by corporations. Now a lawless combat zone run by the Voodoo Boys. The NCPD doesn't go there. Enter at your own risk.",
+            gallery: [
+                "assets/images/archive/districts/pacifica-grid-1.png",
+                "assets/images/archive/districts/pacifica-grid-2.png",
+                "assets/images/archive/districts/pacifica-grid-3.png",
+                "assets/images/archive/districts/pacifica-grid-4.png"
+            ]
+        }
+    ];
 
     let currentPath = ''; 
     let currentJobIndex = 0;
@@ -371,6 +418,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentGangIndex++;
                 if (currentGangIndex >= gangsData.length) currentGangIndex = 0;
                 updateGangView();
+            });
+        }
+
+
+        const prevDistBtn = document.getElementById('prev-district');
+        const nextDistBtn = document.getElementById('next-district');
+        
+        const distName = document.getElementById('district-name');
+        const distMainImg = document.getElementById('district-main-img');
+        const distDesc = document.getElementById('district-desc');
+        
+        let currentDistIndex = 0;
+
+        function updateDistrictView() {
+            const data = districtsData[currentDistIndex];
+
+            if(distName) distName.textContent = data.name.toUpperCase();
+            if(distMainImg) distMainImg.src = data.mainImage;
+            if(distDesc) distDesc.textContent = data.desc;
+
+            data.gallery.forEach((imgSrc, index) => {
+                const imgElement = document.getElementById(`dist-img-${index}`);
+                if(imgElement) {
+                    imgElement.src = imgSrc;
+                }
+            });
+        }
+
+        if(prevDistBtn && nextDistBtn) {
+            updateDistrictView();
+
+            prevDistBtn.addEventListener('click', () => {
+                currentDistIndex--;
+                if(currentDistIndex < 0) currentDistIndex = districtsData.length - 1;
+                updateDistrictView();
+            });
+
+            nextDistBtn.addEventListener('click', () => {
+                currentDistIndex++;
+                if(currentDistIndex >= districtsData.length) currentDistIndex = 0;
+                updateDistrictView();
             });
         }
     }

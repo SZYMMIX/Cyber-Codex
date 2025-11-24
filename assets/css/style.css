@@ -1156,3 +1156,82 @@ input[type="checkbox"]:checked {
     line-height: 1.5;
     color: #bbb;
 }
+
+.district-top {
+    padding: 4rem 20px;
+    text-align: center;
+    border-top: 4px solid #000; 
+}
+
+#district-name {
+    font-family: var(--font-rajdhani); 
+    font-size: 3rem;
+    color: #000;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+ 
+.district-slider-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.district-main-img-wrapper img {
+    width: 100%;
+    max-width: 800px; 
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    
+    border: 3px solid #000;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.8);
+    display: block;
+}
+
+.district-bottom {
+    background-color: #050a10; 
+    color: #fff;
+    padding: 4rem 10%;
+    border-top: 4px solid #000;
+}
+
+#district-desc {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 4rem;
+    font-family: var(--font-rajdhani);
+    font-size: 1.7rem;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.district-gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.district-gallery-grid img {
+    width: 100%;
+    height: 250px; 
+    object-fit: cover;
+    border: 1px solid var(--cp-cyan);
+    transition: 0.3s;
+    filter: grayscale(30%); 
+}
+
+.district-gallery-grid img:hover {
+    filter: grayscale(0%);
+    border-color: #fff;
+    transform: scale(1.02);
+    box-shadow: 0 0 15px var(--cp-cyan);
+    z-index: 10;
+}
