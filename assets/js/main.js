@@ -7,6 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    const videos = document.querySelectorAll('.character-video');
+
+    videos.forEach(video => {
+        video.playbackRate = 0.7;
+    }); 
+
     const chronicleBackgrounds = [
         'assets/images/chronicle/chronicle-foundation-background.png',
         'assets/images/chronicle/chronicle-wars-background.png',

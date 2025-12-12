@@ -161,6 +161,14 @@ a{
     margin-top: 4rem; 
 }
 
+.character-video {
+    width: 100%;
+    height: auto;
+    display: block; 
+    object-fit: contain; 
+    max-height: 100%; 
+}
+
 .hero-glow {
     position: absolute;
     width: 400px;
@@ -372,6 +380,14 @@ a{
     box-shadow: inset 0 0 15px 10px rgba(0, 0, 0, 0.9);
     pointer-events: none;
     z-index: 2;
+}
+
+.hug-video-wrapper{
+    background-color: #000000bd;
+}
+
+.hug-video-wrapper::after{
+    box-shadow: inset 0 0 100px 70px rgba(0, 0, 0, 0.9);
 }
 
 .moon-scroll-container {
