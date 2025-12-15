@@ -29,6 +29,7 @@ body{
     background-color: var(--cp-yellow);
     overflow-x: hidden;
     width: 100%; 
+    cursor: url('../images/cursor-icon.png'), auto;
 }
 
 a{
@@ -60,6 +61,7 @@ a{
 .cyber-nav ul li a:hover {
     background-color: hsla(191, 100%, 60%, 0.75);
     color: #ffffff; 
+    cursor: url('../images/cursor-pointer-icon.png'), pointer;
     
     box-shadow: 0 0 20px hsla(191, 100%, 60%, 0.75);
 }
@@ -67,6 +69,7 @@ a{
 .header-logo a img{
     width: 90px;
     height: auto;
+    cursor: url('../images/cursor-pointer-icon.png'), pointer;
 }
 
 .cyber-nav ul li{
@@ -550,7 +553,7 @@ a{
     border-radius: 5px; 
     border: 2px solid transparent; 
     
-    cursor: pointer;
+    cursor: url('../images/cursor-pointer-icon.png'), pointer;
     transition: all 0.3s ease-in-out; 
     text-shadow: 0 0px 10px var(--cp-cyan);
     box-shadow: 0 0px 15px rgba(0,0,0,0.9);
@@ -742,7 +745,7 @@ a{
     color: #000;
     font-size: 1.5rem;
     font-weight: bold;
-    cursor: pointer;
+    cursor: url('../images/cursor-pointer-icon.png'), pointer;
     
     clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%, 0 70%);
     
@@ -817,7 +820,7 @@ a{
     height: 60px;
     background-color: #111205;
     border: none;
-    cursor: pointer;
+    cursor: url('../images/cursor-pointer-icon.png'), pointer;
     
     display: flex;
     align-items: center;
@@ -933,7 +936,7 @@ input:focus, textarea:focus {
     display: flex;
     align-items: center;
     gap: 8px;
-    cursor: pointer;
+    cursor: url('../images/cursor-pointer-icon.png'), pointer;
     font-size: 1.1rem;
     color: #ccc;
     border: 1px solid transparent; 
@@ -953,7 +956,7 @@ input[type="checkbox"] {
     height: 16px;
     border: 1px solid var(--cp-cyan);
     background: transparent;
-    cursor: pointer;
+    cursor: url('../images/cursor-pointer-icon.png'), pointer;
     position: relative;
     display: inline-block;
 }
@@ -979,7 +982,7 @@ input[type="checkbox"]:checked {
     display: flex;
     align-items: center;
     gap: 10px;
-    cursor: pointer;
+    cursor: url('../images/cursor-pointer-icon.png'), pointer;
 }
 
 .glow-btn {
@@ -991,7 +994,7 @@ input[type="checkbox"]:checked {
     color: var(--cp-cyan);
     border: 2px solid #334444;
     border-radius: 4px;
-    cursor: pointer;
+    cursor: url('../images/cursor-pointer-icon.png'), pointer;
     text-shadow: 0 0 5px var(--cp-cyan);
     transition: 0.3s;
 }
