@@ -550,5 +550,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { threshold: 0.5 }); 
 
         events.forEach(event => eventObserver.observe(event));
+
+        const playSound = (fileName, volume = 0.5) => {
+        const audio = new Audio(`assets/sounds/${fileName}`);
+        audio.volume = volume; 
+        
+        audio.play().catch(e => console.warn("Audio blocked:", e));
+    };
+    const clickables = document.querySelectorAll('button, a, .path-card, input[type="checkbox"], label');
+
+    clickables.forEach(el => {
+        el.addEventListener('click', () => {
+            playSound('terminal-click-sound.wav', 0.3); 
+        });
+    });
     }
 });
