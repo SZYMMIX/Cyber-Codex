@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const districtImages = [
         'assets/images/archive/districts/watson-main.png',
         'assets/images/archive/districts/westbrook-main.png',
-        'assets/images/archive/districts/city-center-main.png',
+        'assets/images/archive/districts/cc-main.png',
         'assets/images/archive/districts/pacifica-main.png'
     ];
 
