@@ -362,6 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     idInput.classList.add('input-error');
                     errorMsg.textContent = specificError; 
                     errorMsg.style.display = 'block';
+                    playSound('terminal-denied-sound.wav', 0.1);
                     
                 } else {
                     alert("CREDENTIALS VERIFIED. DATA UPLOADED TO THE NET.");
@@ -551,4 +552,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         events.forEach(event => eventObserver.observe(event));
     }
+
+    const playSound = (fileName, volume = 0.1) => {
+        const audio = new Audio(`./assets/sounds/${fileName}`);
+        audio.volume = volume; 
+        
+        audio.play().catch(e => console.warn("Audio blocked:", e));
+    };
+    const clickables = document.querySelectorAll('button, a, input[type="checkbox"]');
+
+    clickables.forEach(el => {
+        el.addEventListener('click', (e) => {
+            e.stopPropagation();
+            playSound('terminal-click-sound.wav', 0.1); 
+        });
+    });
+
 });
